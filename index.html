@@ -66,5 +66,21 @@
         console.log(text);
         ipcRenderer.send('save', text);
     }
+
+    ipcRenderer.on('saved', (event, results)=>{
+        if(results == 'success'){
+            textArea.style.backgroundColor = "#b2ff99"
+        }else{
+            textArea.style.backgroundColor = "#ff8989"
+
+        }
+        setTimeout(function(){
+            textArea.style.backgroundColor = ""
+        }, 1000)
+    })
+
+    ipcRenderer.on('save-clicked', ()=>{
+        saveText();
+    })
 </script>
 </html>
